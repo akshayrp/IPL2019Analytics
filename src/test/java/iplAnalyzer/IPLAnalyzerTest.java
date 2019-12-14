@@ -1,5 +1,6 @@
 package iplAnalyzer;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -8,17 +9,18 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
 
 public class IPLAnalyzerTest
 {
    IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
 
-   public static final String RUNS_FILE_PATH
+   public static final String ORIGINAL_RUNS_FILE_PATH
          = "./src/test/resources/IPL2019FactsheetMostRuns.csv";
+   public static final String PREPARED_RUNS_FILE_PATH
+         = "./src/test/resources/preparedRunsFile.csv";
    public static final String NON_EXISTING_FILE_PATH
          = "./src/test/resources/IPL2019MostRuns.csv";
-   public static final String RUNS_SAMPLE_DATA
-         = "./src/test/resources/RunsSampleData.csv";
    public static final String NO_DELIMITER_FILE_PATH
          = "./src/test/resources/RunsSampleDataWithOutDelimiter.csv";
    public static final String NO_HEADER_FILE_PATH
@@ -35,7 +37,7 @@ public class IPLAnalyzerTest
       Reader reader = null;
       try
       {
-         reader = Files.newBufferedReader(Paths.get(RUNS_FILE_PATH));
+         reader = Files.newBufferedReader(Paths.get(ORIGINAL_RUNS_FILE_PATH));
       }
       catch (IOException e)
       {
@@ -62,16 +64,16 @@ public class IPLAnalyzerTest
    @Test
    public void givenFilepath_WhenCorrect_returnsNumberOfRecord()
    {
-      int numberOfData = 0;
+      Map<String, RunDAO> dataMap = null;
       try
       {
-         numberOfData = iplAnalyzer.loadData(RUNS_SAMPLE_DATA);
+         dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
       }
       catch (IPLException e)
       {
          e.printStackTrace();
       }
-      Assert.assertEquals(4, numberOfData);
+      Assert.assertEquals(100, dataMap.size());
    }
 
    @Test
@@ -131,6 +133,53 @@ public class IPLAnalyzerTest
       catch (IPLException e)
       {
          Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
+      }
+   }
+
+   @Test
+   public void givenOriginalFilePath_WhenCorrect_CreateNewFileWithProperData() throws IPLException
+   {
+      iplAnalyzer.prepareFile(ORIGINAL_RUNS_FILE_PATH,PREPARED_RUNS_FILE_PATH);
+      Map<String, RunDAO> dataMap = null;
+      try
+      {
+         dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
+      }
+      Assert.assertEquals(100, dataMap.size());
+   }
+
+   @Test
+   public void givenOriginalFilePath_WhenInCorrect_ThrowException()
+   {
+      try
+      {
+         ExpectedException exception = ExpectedException.none();
+         exception.expect(IPLException.class);
+         iplAnalyzer.prepareFile(NON_EXISTING_FILE_PATH,PREPARED_RUNS_FILE_PATH);
+      }
+      catch (IPLException e)
+      {
+         Assert.assertEquals(IPLException.ExceptionType.CANNOT_READ_FILE, e.type);
+      }
+   }
+
+   @Test
+   public void givenFilePath_whenCorrect_SortDataBasedOnBattingAverage()
+   {
+      try
+      {
+         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(DataFields.BATTING_AVERAGE, dataMap);
+         RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
+         Assert.assertEquals("MS Dhoni", DataInArray[0].player);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
       }
    }
 }

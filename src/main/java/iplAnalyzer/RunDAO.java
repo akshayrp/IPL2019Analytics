@@ -5,8 +5,8 @@ import com.opencsv.bean.CsvBindByName;
 public class RunDAO
 {
    public String player;
-   public String run;
-   public String avg;
+   public int run;
+   public Double avg;
    public String notOut;
 
    public RunDAO()

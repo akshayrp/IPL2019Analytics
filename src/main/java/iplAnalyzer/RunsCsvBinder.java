@@ -12,19 +12,12 @@ public class RunsCsvBinder
    public String player;
 
    @CsvBindByName(column = "Runs", required = true)
-   public String run;
+   public int run;
 
    @CsvBindByName(column = "Avg", required = true)
-   public String avg;
+   public Double avg;
 
    @CsvBindByName(column = "NO", required = true)
    public String notOut;
 
-   public RunsCsvBinder(String player, String run, String avg, String notOut)
-   {
-      this.player = player;
-      this.run = run;
-      this.avg = avg;
-      this.notOut = notOut;
-   }
 }
