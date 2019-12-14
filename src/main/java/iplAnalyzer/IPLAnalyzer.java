@@ -14,16 +14,21 @@ import java.util.stream.StreamSupport;
 
 public class IPLAnalyzer
 {
-   Map<String,RunsCsvBinder> runsMap = new HashMap<>();
+   Map<String, RunDAO> runsMap = new HashMap<>();
+
    public int loadData(String iplFilePath) throws IPLException
    {
       int playersCount = 0;
       try (Reader reader = Files.newBufferedReader(Paths.get(iplFilePath)))
       {
          ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-         Iterator csvFileIterator = csvBuilder.getCSVFileIterator(reader, RunsCsvBinder.class);
-         Iterable csvIterable = () -> csvFileIterator;
-         playersCount = (int) StreamSupport.stream(csvIterable.spliterator(),false).count();
+         Iterator<RunsCsvBinder> csvFileIterator = csvBuilder.getCSVFileIterator(reader, RunsCsvBinder.class);
+         Iterable<RunsCsvBinder> csvIterable = () -> csvFileIterator;
+
+         StreamSupport.stream(csvIterable.spliterator(),false)
+               .map(RunsCsvBinder.class::cast).forEach(CsvData -> runsMap
+               .put(CsvData.player,new RunDAO(CsvData)));
+         playersCount = runsMap.size();
       }
       catch (IOException e)
       {
@@ -35,4 +40,6 @@ public class IPLAnalyzer
       }
       return playersCount;
    }
+
+
 }
