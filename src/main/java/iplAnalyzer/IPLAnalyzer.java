@@ -7,9 +7,17 @@ import java.nio.file.Paths;
 
 public class IPLAnalyzer
 {
-   public Reader loadData(String iplFilePath) throws IOException
+   public Reader loadData(String iplFilePath) throws IPLException
    {
-      Reader reader = Files.newBufferedReader(Paths.get(iplFilePath));
+      Reader reader = null;
+      try
+      {
+         reader = Files.newBufferedReader(Paths.get(iplFilePath));
+      }
+      catch (IOException e)
+      {
+         throw new IPLException("Error in File Reading",IPLException.ExceptionType.CANNOT_READ_FILE);
+      }
       return reader;
    }
 }

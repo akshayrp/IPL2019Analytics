@@ -12,7 +12,7 @@ public class IPLAnalyzerTest
    ="./src/test/resources/IPL2019FactsheetMostRuns.csv";
 
    @Test
-   public void givenFilePath_WhenFileCorrect_CanReadFile() throws IOException
+   public void givenFilePath_WhenFileCorrect_CanReadFile() throws IPLException
    {
       IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
       Reader reader = iplAnalyzer.loadData(RUNS_FILE_PATH);
