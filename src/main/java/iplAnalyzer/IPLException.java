@@ -1,5 +1,7 @@
 package iplAnalyzer;
 
+import java.io.IOException;
+
 public class IPLException extends Throwable
 {
    enum ExceptionType

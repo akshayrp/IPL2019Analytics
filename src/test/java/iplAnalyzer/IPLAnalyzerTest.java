@@ -3,6 +3,7 @@ package iplAnalyzer;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -13,15 +14,18 @@ public class IPLAnalyzerTest
    IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
 
    public static final String RUNS_FILE_PATH
-         ="./src/test/resources/IPL2019FactsheetMostRuns.csv";
+         = "./src/test/resources/IPL2019FactsheetMostRuns.csv";
    public static final String NON_EXISTING_FILE_PATH
-         ="./src/test/resources/IPL2019MostRuns.csv";
+         = "./src/test/resources/IPL2019MostRuns.csv";
    public static final String RUNS_SAMPLE_DATA
-         ="./src/test/resources/RunsSampleData.csv";
+         = "./src/test/resources/RunsSampleData.csv";
    public static final String NO_DELIMITER_FILE_PATH
          = "./src/test/resources/RunsSampleDataWithOutDelimiter.csv";
    public static final String NO_HEADER_FILE_PATH
          = "./src/test/resources/RunsSampleDataWithoutHeader.csv";
+   public static final String NO_DATA_FILE_PATH
+         = "./src/test/resources/RunsSampleWithOutData.csv";
+
 
    @Test
    public void givenFilePath_WhenFileCorrect_CanReadFile()
@@ -43,9 +47,9 @@ public class IPLAnalyzerTest
    {
       try
       {
-      ExpectedException exception = ExpectedException.none();
-      exception.expect(IPLException.class);
-      iplAnalyzer.loadData(NON_EXISTING_FILE_PATH);
+         ExpectedException exception = ExpectedException.none();
+         exception.expect(IPLException.class);
+         iplAnalyzer.loadData(NON_EXISTING_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -54,7 +58,7 @@ public class IPLAnalyzerTest
    }
 
    @Test
-   public void  givenFilepath_WhenCorrect_returnsNumberOfRecord()
+   public void givenFilepath_WhenCorrect_returnsNumberOfRecord()
    {
       int numberOfData = 0;
       try
@@ -65,7 +69,7 @@ public class IPLAnalyzerTest
       {
          e.printStackTrace();
       }
-      Assert.assertEquals(4,numberOfData);
+      Assert.assertEquals(4, numberOfData);
    }
 
    @Test
@@ -91,6 +95,21 @@ public class IPLAnalyzerTest
          ExpectedException exception = ExpectedException.none();
          exception.expect(IPLException.class);
          iplAnalyzer.loadData(NO_HEADER_FILE_PATH);
+      }
+      catch (IPLException e)
+      {
+         Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
+      }
+   }
+
+   @Test
+   public void givenFilePath_WhenNoDataFound_HandlesException()
+   {
+      try
+      {
+         ExpectedException exception = ExpectedException.none();
+         exception.expect(IPLException.class);
+         iplAnalyzer.loadData(NO_DATA_FILE_PATH);
       }
       catch (IPLException e)
       {

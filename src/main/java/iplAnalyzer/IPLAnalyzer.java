@@ -3,7 +3,6 @@ package iplAnalyzer;
 import CSVBuilder.CSVBuilderException;
 import CSVBuilder.CSVBuilderFactory;
 import CSVBuilder.ICSVBuilder;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -18,15 +17,7 @@ public class IPLAnalyzer
       try( Reader reader = Files.newBufferedReader(Paths.get(iplFilePath)))
       {
          ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-         Iterator csvFileIterator = null;
-         try
-         {
-            csvFileIterator = csvBuilder.getCSVFileIterator(reader, RunsCsvBinder.class);
-         }
-         catch (CSVBuilderException e)
-         {
-            throw new IPLException("Unable to Parse",IPLException.ExceptionType.UNABLE_TO_PARSE);
-         }
+         Iterator csvFileIterator = csvBuilder.getCSVFileIterator(reader, RunsCsvBinder.class);
          while(csvFileIterator.hasNext())
          {
             playersCount++;
@@ -37,9 +28,9 @@ public class IPLAnalyzer
       {
          throw new IPLException("Error in File Reading",IPLException.ExceptionType.CANNOT_READ_FILE);
       }
-      catch (RuntimeException e)
+      catch (CSVBuilderException e)
       {
-         throw new IPLException("Unable to Parse",IPLException.ExceptionType.UNABLE_TO_PARSE);
+         throw new IPLException("Unable to Build Bean",IPLException.ExceptionType.UNABLE_TO_PARSE);
       }
       return playersCount;
    }
