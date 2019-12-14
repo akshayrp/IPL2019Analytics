@@ -2,5 +2,5 @@ package iplAnalyzer;
 
 public enum  DataFields
 {
-   BATTING_AVERAGE
+   BATTING_AVERAGE,STRIKE_RATE
 }

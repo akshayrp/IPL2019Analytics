@@ -20,4 +20,7 @@ public class RunsCsvBinder
    @CsvBindByName(column = "NO", required = true)
    public String notOut;
 
+   @CsvBindByName(column = "SR", required = true)
+   public Double strikeRate;
+
 }

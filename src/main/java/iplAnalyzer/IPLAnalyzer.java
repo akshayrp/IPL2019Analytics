@@ -26,6 +26,8 @@ public class IPLAnalyzer
       this.runsMap = new HashMap<>();
       this.enumMap = new HashMap<>();
       this.enumMap.put(dataFields.BATTING_AVERAGE, Comparator.comparing(census -> census.avg, Comparator.reverseOrder()));
+      this.enumMap.put(dataFields.STRIKE_RATE, Comparator.comparing(census -> census.strikeRate, Comparator.reverseOrder()));
+
    }
 
    public Map<String, RunDAO> loadData(String iplFilePath) throws IPLException

@@ -182,4 +182,20 @@ public class IPLAnalyzerTest
          e.printStackTrace();
       }
    }
+
+   @Test
+   public void givenPreparedFilePath_WhenCorrect_SortDataBasedOnStrikeRate()
+   {
+      try
+      {
+         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(DataFields.STRIKE_RATE, dataMap);
+         RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
+         Assert.assertEquals("Ishant Sharma", DataInArray[0].player);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
+      }
+   }
 }
