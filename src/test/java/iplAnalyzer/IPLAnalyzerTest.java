@@ -3,8 +3,6 @@ package iplAnalyzer;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -20,6 +18,10 @@ public class IPLAnalyzerTest
          ="./src/test/resources/IPL2019MostRuns.csv";
    public static final String RUNS_SAMPLE_DATA
          ="./src/test/resources/RunsSampleData.csv";
+   public static final String NO_DELIMITER_FILE_PATH
+         = "./src/test/resources/RunsSampleDataWithOutDelimiter.csv";
+   public static final String NO_HEADER_FILE_PATH
+         = "./src/test/resources/RunsSampleDataWithoutHeader.csv";
 
    @Test
    public void givenFilePath_WhenFileCorrect_CanReadFile()
@@ -64,5 +66,35 @@ public class IPLAnalyzerTest
          e.printStackTrace();
       }
       Assert.assertEquals(4,numberOfData);
+   }
+
+   @Test
+   public void givenFilePath_WhenDelimiterNotFound_HandlesException()
+   {
+      try
+      {
+         ExpectedException exception = ExpectedException.none();
+         exception.expect(IPLException.class);
+         iplAnalyzer.loadData(NO_DELIMITER_FILE_PATH);
+      }
+      catch (IPLException e)
+      {
+         Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
+      }
+   }
+
+   @Test
+   public void givenFilePath_WhenHeaderNotFound_HandlesException()
+   {
+      try
+      {
+         ExpectedException exception = ExpectedException.none();
+         exception.expect(IPLException.class);
+         iplAnalyzer.loadData(NO_HEADER_FILE_PATH);
+      }
+      catch (IPLException e)
+      {
+         Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
+      }
    }
 }

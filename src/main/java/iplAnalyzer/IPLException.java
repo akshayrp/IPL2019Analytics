@@ -4,7 +4,7 @@ public class IPLException extends Throwable
 {
    enum ExceptionType
    {
-      CANNOT_READ_FILE
+      CANNOT_READ_FILE, UNABLE_TO_PARSE
    }
 
    ExceptionType type;

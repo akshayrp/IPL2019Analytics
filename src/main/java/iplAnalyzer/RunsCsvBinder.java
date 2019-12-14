@@ -12,6 +12,4 @@ public class RunsCsvBinder
 
    @CsvBindByName(column = "Avg", required = true)
    public String avg;
-
-
 }
