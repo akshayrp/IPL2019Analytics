@@ -25,6 +25,8 @@ public class IPLAnalyzerTest
          = "./src/test/resources/RunsSampleDataWithoutHeader.csv";
    public static final String NO_DATA_FILE_PATH
          = "./src/test/resources/RunsSampleWithOutData.csv";
+   private static final String WKTS_FILE_PATH
+         = "./src/test/resources/IPL2019FactsheetMostWkts.csv";
 
 
    @Test
@@ -110,6 +112,21 @@ public class IPLAnalyzerTest
          ExpectedException exception = ExpectedException.none();
          exception.expect(IPLException.class);
          iplAnalyzer.loadData(NO_DATA_FILE_PATH);
+      }
+      catch (IPLException e)
+      {
+         Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
+      }
+   }
+
+   @Test
+   public void givenFilePath_WhenWrong_HandlesException()
+   {
+      try
+      {
+         ExpectedException exception = ExpectedException.none();
+         exception.expect(IPLException.class);
+         iplAnalyzer.loadData(WKTS_FILE_PATH);
       }
       catch (IPLException e)
       {
