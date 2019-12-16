@@ -55,7 +55,7 @@ public class IPLAnalyzerTest
       {
          ExpectedException exception = ExpectedException.none();
          exception.expect(IPLException.class);
-         iplAnalyzer.loadData(NON_EXISTING_FILE_PATH);
+         iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, NON_EXISTING_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -66,10 +66,10 @@ public class IPLAnalyzerTest
    @Test
    public void givenFilepath_WhenCorrect_returnsNumberOfRecord()
    {
-      Map<String, RunDAO> dataMap = null;
+      Map<String, PlayerDAO> dataMap = null;
       try
       {
-         dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
+         dataMap = iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -85,7 +85,7 @@ public class IPLAnalyzerTest
       {
          ExpectedException exception = ExpectedException.none();
          exception.expect(IPLException.class);
-         iplAnalyzer.loadData(NO_DELIMITER_FILE_PATH);
+         iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, NO_DELIMITER_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -100,7 +100,7 @@ public class IPLAnalyzerTest
       {
          ExpectedException exception = ExpectedException.none();
          exception.expect(IPLException.class);
-         iplAnalyzer.loadData(NO_HEADER_FILE_PATH);
+         iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, NO_HEADER_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -115,7 +115,7 @@ public class IPLAnalyzerTest
       {
          ExpectedException exception = ExpectedException.none();
          exception.expect(IPLException.class);
-         iplAnalyzer.loadData(NO_DATA_FILE_PATH);
+         iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, NO_DATA_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -130,7 +130,7 @@ public class IPLAnalyzerTest
       {
          ExpectedException exception = ExpectedException.none();
          exception.expect(IPLException.class);
-         iplAnalyzer.loadData(WKTS_FILE_PATH);
+         iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, WKTS_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -141,10 +141,10 @@ public class IPLAnalyzerTest
    @Test
    public void givenOriginalFilePath_WhenCorrect_CreateNewFileWithProperData() throws IPLException
    {
-      Map<String, RunDAO> dataMap = null;
+      Map<String, PlayerDAO> dataMap = null;
       try
       {
-         dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
+         dataMap = iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -160,7 +160,7 @@ public class IPLAnalyzerTest
       {
          ExpectedException exception = ExpectedException.none();
          exception.expect(IPLException.class);
-         iplAnalyzer.prepareFile(NON_EXISTING_FILE_PATH,PREPARED_RUNS_FILE_PATH);
+         iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN,NON_EXISTING_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -173,8 +173,8 @@ public class IPLAnalyzerTest
    {
       try
       {
-         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(DataFields.BATTING_AVERAGE, dataMap);
+         Map<String, PlayerDAO> dataMap = iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.BATTING_AVERAGE, dataMap);
          RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
          Assert.assertEquals("MS Dhoni", DataInArray[0].player);
       }
@@ -189,8 +189,8 @@ public class IPLAnalyzerTest
    {
       try
       {
-         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(DataFields.STRIKE_RATE, dataMap);
+         Map<String, PlayerDAO> dataMap = iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.STRIKE_RATE, dataMap);
          RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
          Assert.assertEquals("Ishant Sharma", DataInArray[0].player);
       }
@@ -205,8 +205,8 @@ public class IPLAnalyzerTest
    {
       try
       {
-         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(DataFields.SORT_ON_4s_AND_6s,dataMap);
+         Map<String, PlayerDAO> dataMap = iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.SORT_ON_4s_AND_6s, dataMap);
          RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
          Assert.assertEquals("Andre Russell", DataInArray[0].player);
       }
@@ -222,8 +222,8 @@ public class IPLAnalyzerTest
    {
       try
       {
-         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(DataFields.BEST_STRIKE_RATE_WITH_6s_4s,dataMap);
+         Map<String, PlayerDAO> dataMap = iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN,ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.BEST_STRIKE_RATE_WITH_6s_4s, dataMap);
          RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
          Assert.assertEquals("Andre Russell", DataInArray[0].player);
       }
@@ -238,10 +238,26 @@ public class IPLAnalyzerTest
    {
       try
       {
-         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(DataFields.STRIKE_RATE_AND_AVERAGE,dataMap);
+         Map<String, PlayerDAO> dataMap = iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.STRIKE_RATE_AND_AVERAGE, dataMap);
          RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
          Assert.assertEquals("MS Dhoni", DataInArray[0].player);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
+      }
+   }
+
+   @Test
+   public void givenRunsCvsData_WhenCorrect_CompareRunsAndStrikeRateToSort()
+   {
+      try
+      {
+         Map<String, PlayerDAO> dataMap = iplAnalyzer.getSortedData( IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.STRIKE_RATE_AND_RUNS, dataMap);
+         RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
+         Assert.assertEquals("David Warner", DataInArray[0].player);
       }
       catch (IPLException e)
       {

@@ -1,7 +1,12 @@
 package iplAnalyzer;
 
-public class RunDAO
+public class PlayerDAO
 {
+
+   public PlayerDAO()
+   {
+   }
+
    public String player;
    public int run;
    public Double avg;
@@ -10,7 +15,7 @@ public class RunDAO
    public int fours;
    public int sixs;
 
-   public RunDAO(RunsCsvBinder csvData)
+   public PlayerDAO(RunsCsvBinder csvData)
    {
       this.player = csvData.player;
       this.run = csvData.run;
@@ -19,5 +24,12 @@ public class RunDAO
       this.strikeRate = csvData.strikeRate;
       this.fours = csvData.Fours;
       this.sixs = csvData.Sixs;
+   }
+
+   public PlayerDAO(BowlerCsvBinder csvData)
+   {
+      this.player = csvData.player;
+      this.avg = csvData.avg;
+      this.strikeRate = csvData.strikeRate;
    }
 }
