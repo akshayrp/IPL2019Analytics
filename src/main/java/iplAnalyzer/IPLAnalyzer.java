@@ -21,18 +21,23 @@ public class IPLAnalyzer
 
    DataFields dataFields;
 
+   public static final String PREPARED_RUNS_FILE_PATH
+         = "./src/test/resources/preparedRunsFile.csv";
+
    public IPLAnalyzer()
    {
       this.runsMap = new HashMap<>();
       this.enumMap = new HashMap<>();
       this.enumMap.put(dataFields.BATTING_AVERAGE, Comparator.comparing(census -> census.avg, Comparator.reverseOrder()));
       this.enumMap.put(dataFields.STRIKE_RATE, Comparator.comparing(census -> census.strikeRate, Comparator.reverseOrder()));
-
+      this.enumMap.put(dataFields.SORT_ON_4s_AND_6s,new CustomComparator().reversed());
+      this.enumMap.put(dataFields.BEST_STRIKE_RATE_WITH_6s_4s,new CustomComparator().reversed().thenComparing(compare -> compare.strikeRate));
    }
 
    public Map<String, RunDAO> loadData(String iplFilePath) throws IPLException
    {
-      try (Reader reader = Files.newBufferedReader(Paths.get(iplFilePath)))
+      prepareFile(iplFilePath,PREPARED_RUNS_FILE_PATH);
+      try (Reader reader = Files.newBufferedReader(Paths.get(PREPARED_RUNS_FILE_PATH)))
       {
          ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
          Iterator<RunsCsvBinder> csvFileIterator = csvBuilder.getCSVFileIterator(reader, RunsCsvBinder.class);
@@ -44,7 +49,7 @@ public class IPLAnalyzer
       }
       catch (IOException e)
       {
-         throw new IPLException("Error in File Reading", IPLException.ExceptionType.CANNOT_READ_FILE);
+         //throw new IPLException("Error in File Reading", IPLException.ExceptionType.CANNOT_READ_FILE);
       }
       catch (CSVBuilderException e)
       {
@@ -62,17 +67,6 @@ public class IPLAnalyzer
       String sortedData = new Gson().toJson(list);
       return sortedData;
    }
-
-   public String sortDataOn4sAnd6s(Map<String, RunDAO> dataMap)
-   {
-      ArrayList list = dataMap.values().stream().collect(Collectors.toCollection(ArrayList::new));
-      Collections.sort(list, (Comparator<RunDAO>) (o1, o2) ->
-            Integer.valueOf(o1.sixs).compareTo(Integer.valueOf(o2.fours)));
-      Collections.reverse(list);
-      String sortedData = new Gson().toJson(list);
-      return sortedData;
-   }
-
 
    public void prepareFile(String originalFilePath, String preparedFilePath) throws IPLException
    {

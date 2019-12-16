@@ -17,8 +17,6 @@ public class IPLAnalyzerTest
 
    public static final String ORIGINAL_RUNS_FILE_PATH
          = "./src/test/resources/IPL2019FactsheetMostRuns.csv";
-   public static final String PREPARED_RUNS_FILE_PATH
-         = "./src/test/resources/preparedRunsFile.csv";
    public static final String RUNS_SAMPLE_DATA
          = "./src/test/resources/RunsSampleData.csv";
    public static final String NON_EXISTING_FILE_PATH
@@ -31,6 +29,8 @@ public class IPLAnalyzerTest
          = "./src/test/resources/RunsSampleWithOutData.csv";
    private static final String WKTS_FILE_PATH
          = "./src/test/resources/IPL2019FactsheetMostWkts.csv";
+   public static final String PREPARED_RUNS_FILE_PATH
+         = "./src/test/resources/preparedRunsFile.csv";
 
 
    @Test
@@ -69,7 +69,7 @@ public class IPLAnalyzerTest
       Map<String, RunDAO> dataMap = null;
       try
       {
-         dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
+         dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -141,11 +141,10 @@ public class IPLAnalyzerTest
    @Test
    public void givenOriginalFilePath_WhenCorrect_CreateNewFileWithProperData() throws IPLException
    {
-      iplAnalyzer.prepareFile(ORIGINAL_RUNS_FILE_PATH,PREPARED_RUNS_FILE_PATH);
       Map<String, RunDAO> dataMap = null;
       try
       {
-         dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
+         dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
       }
       catch (IPLException e)
       {
@@ -174,7 +173,7 @@ public class IPLAnalyzerTest
    {
       try
       {
-         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
+         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
          String dataString = iplAnalyzer.sortData(DataFields.BATTING_AVERAGE, dataMap);
          RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
          Assert.assertEquals("MS Dhoni", DataInArray[0].player);
@@ -190,7 +189,7 @@ public class IPLAnalyzerTest
    {
       try
       {
-         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
+         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
          String dataString = iplAnalyzer.sortData(DataFields.STRIKE_RATE, dataMap);
          RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
          Assert.assertEquals("Ishant Sharma", DataInArray[0].player);
@@ -206,8 +205,25 @@ public class IPLAnalyzerTest
    {
       try
       {
-         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
-         String dataString = iplAnalyzer.sortDataOn4sAnd6s(dataMap);
+         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(DataFields.SORT_ON_4s_AND_6s,dataMap);
+         RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
+         Assert.assertEquals("Andre Russell", DataInArray[0].player);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
+      }
+
+   }
+
+   @Test
+   public void givenRunsCsvData_WhenCorrect_CompareDataBasedOn4sAnd6sStrikeRateAndGivesSortedData()
+   {
+      try
+      {
+         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(DataFields.BEST_STRIKE_RATE_WITH_6s_4s,dataMap);
          RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
          Assert.assertEquals("Andre Russell", DataInArray[0].player);
       }
