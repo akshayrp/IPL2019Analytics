@@ -17,9 +17,9 @@ import java.util.stream.StreamSupport;
 public class IPLAnalyzer
 {
    Map<String, RunDAO> runsMap;
-   Map<DataFields, Comparator<RunDAO>> enumMap = null;
+   Map<SortingEnums, Comparator<RunDAO>> enumMap = null;
 
-   DataFields dataFields;
+   SortingEnums sortingBasedOn;
 
    public static final String PREPARED_RUNS_FILE_PATH
          = "./src/test/resources/preparedRunsFile.csv";
@@ -28,17 +28,19 @@ public class IPLAnalyzer
    {
       this.runsMap = new HashMap<>();
       this.enumMap = new HashMap<>();
-      this.enumMap.put(dataFields.BATTING_AVERAGE, Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder()));
-      this.enumMap.put(dataFields.STRIKE_RATE, Comparator.comparing(ipl -> ipl.strikeRate, Comparator.reverseOrder()));
-      this.enumMap.put(dataFields.SORT_ON_4s_AND_6s,new ComparatorFor4sAnd6s().reversed());
-      this.enumMap.put(dataFields.BEST_STRIKE_RATE_WITH_6s_4s,new ComparatorFor4sAnd6s().reversed().thenComparing(compare -> compare.strikeRate));
-      Comparator<RunDAO> average = Comparator.comparing(ipl -> ipl.avg,Comparator.reverseOrder());
-      this.enumMap.put(dataFields.STRIKE_RATE_AND_AVERAGE,average.thenComparing(compare -> compare.strikeRate,Comparator.reverseOrder()));
+      this.enumMap.put(sortingBasedOn.BATTING_AVERAGE, Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder()));
+      this.enumMap.put(sortingBasedOn.STRIKE_RATE, Comparator.comparing(ipl -> ipl.strikeRate, Comparator.reverseOrder()));
+      this.enumMap.put(sortingBasedOn.SORT_ON_4s_AND_6s, new ComparatorFor4sAnd6s().reversed());
+      this.enumMap.put(sortingBasedOn.BEST_STRIKE_RATE_WITH_6s_4s, new ComparatorFor4sAnd6s().reversed().thenComparing(compare -> compare.strikeRate));
+      Comparator<RunDAO> comparingAverageForStrikeRate = Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder());
+      this.enumMap.put(sortingBasedOn.STRIKE_RATE_AND_AVERAGE, comparingAverageForStrikeRate.thenComparing(compare -> compare.strikeRate, Comparator.reverseOrder()));
+      Comparator<RunDAO> comparingRunsForAverage = Comparator.comparing(ipl -> ipl.run, Comparator.reverseOrder());
+      this.enumMap.put(sortingBasedOn.STRIKE_RATE_AND_RUNS, comparingRunsForAverage.thenComparing(compare -> compare.avg, Comparator.reverseOrder()));
    }
 
    public Map<String, RunDAO> loadData(String iplFilePath) throws IPLException
    {
-      prepareFile(iplFilePath,PREPARED_RUNS_FILE_PATH);
+      prepareFile(iplFilePath, PREPARED_RUNS_FILE_PATH);
       try (Reader reader = Files.newBufferedReader(Paths.get(PREPARED_RUNS_FILE_PATH)))
       {
          ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
@@ -51,7 +53,7 @@ public class IPLAnalyzer
       }
       catch (IOException e)
       {
-         //throw new IPLException("Error in File Reading", IPLException.ExceptionType.CANNOT_READ_FILE);
+         throw new IPLException("Error in File Reading", IPLException.ExceptionType.CANNOT_READ_FILE);
       }
       catch (CSVBuilderException e)
       {
@@ -60,7 +62,7 @@ public class IPLAnalyzer
       return runsMap;
    }
 
-   public String sortData(DataFields field, Map<String, RunDAO> dataMap)
+   public String sortData(SortingEnums field, Map<String, RunDAO> dataMap)
    {
       ArrayList list = dataMap.values()
             .stream()
