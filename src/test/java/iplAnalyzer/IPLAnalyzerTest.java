@@ -231,6 +231,21 @@ public class IPLAnalyzerTest
       {
          e.printStackTrace();
       }
+   }
 
+   @Test
+   public void givenRunsCsvData_WhenCorrect_CompareStrikeRateAndAveragesToSortData()
+   {
+      try
+      {
+         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(ORIGINAL_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(DataFields.STRIKE_RATE_AND_AVERAGE,dataMap);
+         RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
+         Assert.assertEquals("MS Dhoni", DataInArray[0].player);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
+      }
    }
 }

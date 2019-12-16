@@ -28,10 +28,12 @@ public class IPLAnalyzer
    {
       this.runsMap = new HashMap<>();
       this.enumMap = new HashMap<>();
-      this.enumMap.put(dataFields.BATTING_AVERAGE, Comparator.comparing(census -> census.avg, Comparator.reverseOrder()));
-      this.enumMap.put(dataFields.STRIKE_RATE, Comparator.comparing(census -> census.strikeRate, Comparator.reverseOrder()));
-      this.enumMap.put(dataFields.SORT_ON_4s_AND_6s,new CustomComparator().reversed());
-      this.enumMap.put(dataFields.BEST_STRIKE_RATE_WITH_6s_4s,new CustomComparator().reversed().thenComparing(compare -> compare.strikeRate));
+      this.enumMap.put(dataFields.BATTING_AVERAGE, Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder()));
+      this.enumMap.put(dataFields.STRIKE_RATE, Comparator.comparing(ipl -> ipl.strikeRate, Comparator.reverseOrder()));
+      this.enumMap.put(dataFields.SORT_ON_4s_AND_6s,new ComparatorFor4sAnd6s().reversed());
+      this.enumMap.put(dataFields.BEST_STRIKE_RATE_WITH_6s_4s,new ComparatorFor4sAnd6s().reversed().thenComparing(compare -> compare.strikeRate));
+      Comparator<RunDAO> average = Comparator.comparing(ipl -> ipl.avg,Comparator.reverseOrder());
+      this.enumMap.put(dataFields.STRIKE_RATE_AND_AVERAGE,average.thenComparing(compare -> compare.strikeRate,Comparator.reverseOrder()));
    }
 
    public Map<String, RunDAO> loadData(String iplFilePath) throws IPLException

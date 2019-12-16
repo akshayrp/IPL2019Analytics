@@ -2,7 +2,7 @@ package iplAnalyzer;
 
 import java.util.Comparator;
 
-public class CustomComparator implements Comparator<RunDAO>
+public class ComparatorFor4sAnd6s implements Comparator<RunDAO>
 {
    @Override
    public int compare(RunDAO o1, RunDAO o2)
