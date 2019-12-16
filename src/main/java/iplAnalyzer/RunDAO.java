@@ -7,6 +7,8 @@ public class RunDAO
    public Double avg;
    public String notOut;
    public Double strikeRate;
+   public int fours;
+   public int sixs;
 
    public RunDAO(RunsCsvBinder csvData)
    {
@@ -15,5 +17,7 @@ public class RunDAO
       this.avg = csvData.avg;
       this.notOut = csvData.notOut;
       this.strikeRate = csvData.strikeRate;
+      this.fours = csvData.Fours;
+      this.sixs = csvData.Sixs;
    }
 }

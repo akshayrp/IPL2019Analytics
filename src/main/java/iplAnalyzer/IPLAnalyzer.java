@@ -63,6 +63,16 @@ public class IPLAnalyzer
       return sortedData;
    }
 
+   public String sortDataOn4sAnd6s(Map<String, RunDAO> dataMap)
+   {
+      ArrayList list = dataMap.values().stream().collect(Collectors.toCollection(ArrayList::new));
+      Collections.sort(list, (Comparator<RunDAO>) (o1, o2) ->
+            Integer.valueOf(o1.sixs).compareTo(Integer.valueOf(o2.fours)));
+      Collections.reverse(list);
+      String sortedData = new Gson().toJson(list);
+      return sortedData;
+   }
+
 
    public void prepareFile(String originalFilePath, String preparedFilePath) throws IPLException
    {

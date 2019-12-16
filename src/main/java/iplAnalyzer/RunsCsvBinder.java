@@ -23,4 +23,10 @@ public class RunsCsvBinder
    @CsvBindByName(column = "SR", required = true)
    public Double strikeRate;
 
+   @CsvBindByName(column = "4s")
+   public int Fours;
+
+   @CsvBindByName(column = "6s", required = true)
+   public int Sixs;
+
 }

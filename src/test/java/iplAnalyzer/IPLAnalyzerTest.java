@@ -19,6 +19,8 @@ public class IPLAnalyzerTest
          = "./src/test/resources/IPL2019FactsheetMostRuns.csv";
    public static final String PREPARED_RUNS_FILE_PATH
          = "./src/test/resources/preparedRunsFile.csv";
+   public static final String RUNS_SAMPLE_DATA
+         = "./src/test/resources/RunsSampleData.csv";
    public static final String NON_EXISTING_FILE_PATH
          = "./src/test/resources/IPL2019MostRuns.csv";
    public static final String NO_DELIMITER_FILE_PATH
@@ -197,5 +199,22 @@ public class IPLAnalyzerTest
       {
          e.printStackTrace();
       }
+   }
+
+   @Test
+   public void givenRunsCsvData_WhenCorrect_CompareDataBasedOnMax4sAnd6sAndGivesSortedData()
+   {
+      try
+      {
+         Map<String, RunDAO> dataMap = iplAnalyzer.loadData(PREPARED_RUNS_FILE_PATH);
+         String dataString = iplAnalyzer.sortDataOn4sAnd6s(dataMap);
+         RunsCsvBinder[] DataInArray = new Gson().fromJson(dataString, RunsCsvBinder[].class);
+         Assert.assertEquals("Andre Russell", DataInArray[0].player);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
+      }
+
    }
 }
