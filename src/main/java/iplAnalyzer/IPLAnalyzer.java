@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class IPLAnalyzer
 {
-   Map<SortingEnums, Comparator<PlayerDAO>> enumMap = null;
+   Map<SortingEnums, Comparator<PlayerDao>> enumMap = null;
    SortingEnums sortingBasedOn;
 
    public enum PlayerEnum
@@ -21,25 +21,28 @@ public class IPLAnalyzer
    {
       this.enumMap = new HashMap<>();
       this.enumMap.put(sortingBasedOn.BATTING_AVERAGE, Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder()));
-      this.enumMap.put(sortingBasedOn.STRIKE_RATE, Comparator.comparing(ipl -> ipl.strikeRate, Comparator.reverseOrder()));
-      this.enumMap.put(sortingBasedOn.SORT_ON_4s_AND_6s, new ComparatorFor4sAnd6s().reversed());
-      this.enumMap.put(sortingBasedOn.BEST_STRIKE_RATE_WITH_6s_4s, new ComparatorFor4sAnd6s().reversed().thenComparing(compare -> compare.strikeRate));
-      Comparator<PlayerDAO> comparingAverageForStrikeRate = Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder());
+      this.enumMap.put(sortingBasedOn.BATTING_STRIKE_RATE, Comparator.comparing(ipl -> ipl.strikeRate, Comparator.reverseOrder()));
+      this.enumMap.put(sortingBasedOn.SORT_ON_4s_AND_6s, new ComparatorForTwoFields().reversed());
+      this.enumMap.put(sortingBasedOn.BEST_STRIKE_RATE_WITH_6s_4s, new ComparatorForTwoFields().reversed().thenComparing(compare -> compare.strikeRate));
+      Comparator<PlayerDao> comparingAverageForStrikeRate = Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder());
       this.enumMap.put(sortingBasedOn.STRIKE_RATE_AND_AVERAGE, comparingAverageForStrikeRate.thenComparing(compare -> compare.strikeRate, Comparator.reverseOrder()));
-      Comparator<PlayerDAO> comparingRunsForAverage = Comparator.comparing(ipl -> ipl.run, Comparator.reverseOrder());
+      Comparator<PlayerDao> comparingRunsForAverage = Comparator.comparing(ipl -> ipl.run, Comparator.reverseOrder());
       this.enumMap.put(sortingBasedOn.STRIKE_RATE_AND_RUNS, comparingRunsForAverage.thenComparing(compare -> compare.avg, Comparator.reverseOrder()));
+      this.enumMap.put(sortingBasedOn.BOWLING_AVERAGE, Comparator.comparing(ipl -> ipl.avg));
+      this.enumMap.put(sortingBasedOn.BOWLING_STRIKE_RATE, Comparator.comparing(ipl -> ipl.strikeRate));
+      this.enumMap.put(sortingBasedOn.BOWLING_ECONOMY, Comparator.comparing(ipl -> ipl.economy));
+
    }
 
-   public Map<String, PlayerDAO> getSortedData(PlayerEnum player, String iplFilePath) throws IPLException
+   public Map<String, PlayerDao> getSortedData(PlayerEnum playerEnum, String iplFilePath) throws IPLException
    {
-      this.player = player;
-      IPLAdapter obj = PlayerObjectFactory.getPlayer(player);
-      Map<String, PlayerDAO> map = obj.loadData(iplFilePath);
+      this.player = playerEnum;
+      IPLAdapter player = PlayerObjectFactory.getPlayer(playerEnum);
+      Map<String, PlayerDao> map = player.loadData(iplFilePath);
       return map;
    }
 
-
-   public String sortData(SortingEnums field, Map<String, PlayerDAO> dataMap)
+   public String sortData(SortingEnums field, Map<String, PlayerDao> dataMap)
    {
       ArrayList list = dataMap.values()
             .stream()
@@ -48,6 +51,4 @@ public class IPLAnalyzer
       String sortedData = new Gson().toJson(list);
       return sortedData;
    }
-
-
 }

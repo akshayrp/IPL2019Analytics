@@ -4,11 +4,10 @@ import java.util.Map;
 
 public class BatsMan extends IPLAdapter
 {
-
    @Override
-   public Map<String, PlayerDAO> loadData(String iplFilePath) throws IPLException
+   public Map<String, PlayerDao> loadData(String iplFilePath) throws IPLException
    {
-      Map<String, PlayerDAO> map = super.loadData(RunsCsvBinder.class,iplFilePath);
+      Map<String, PlayerDao> map = super.loadData(BatsManCsvBinder.class,iplFilePath);
       return map;
    }
 }

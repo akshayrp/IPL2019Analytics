@@ -3,7 +3,6 @@ package iplAnalyzer;
 import CSVBuilder.CSVBuilderException;
 import CSVBuilder.CSVBuilderFactory;
 import CSVBuilder.ICSVBuilder;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -19,40 +18,40 @@ import java.util.stream.StreamSupport;
 public abstract class IPLAdapter
 {
 
-   public static final String PREPARED_RUNS_FILE_PATH
+   public static final String PREPARED_FILE_PATH
          = "./src/test/resources/preparedRunsFile.csv";
 
-   Map<String, PlayerDAO> runsMap;
+   Map<String, PlayerDao> runsMap;
 
    public IPLAdapter()
    {
       this.runsMap = new HashMap<>();
    }
 
-   public abstract Map<String, PlayerDAO> loadData(String iplFilePath) throws IPLException;
+   public abstract Map<String, PlayerDao> loadData(String iplFilePath) throws IPLException;
 
-   public <E> Map<String, PlayerDAO> loadData(Class<E> binderClass, String iplFilePath) throws IPLException
+   public <E> Map<String, PlayerDao> loadData(Class<E> binderClass, String iplFilePath) throws IPLException
    {
-      prepareFile(iplFilePath, PREPARED_RUNS_FILE_PATH);
-      try (Reader reader = Files.newBufferedReader(Paths.get(PREPARED_RUNS_FILE_PATH)))
+      prepareFile(iplFilePath, PREPARED_FILE_PATH);
+      try (Reader reader = Files.newBufferedReader(Paths.get(PREPARED_FILE_PATH)))
       {
          ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-         Iterator<RunsCsvBinder> csvFileIterator = csvBuilder.getCSVFileIterator(reader, binderClass);
-         Iterable<RunsCsvBinder> csvIterable = () -> csvFileIterator;
+         Iterator<E> csvFileIterator = csvBuilder.getCSVFileIterator(reader, binderClass);
+         Iterable<E> csvIterable = () -> csvFileIterator;
 
-         if (binderClass.getName().equals("iplAnalyzer.RunsCsvBinder"))
+         if (binderClass.getName().equals("iplAnalyzer.BatsManCsvBinder"))
          {
             StreamSupport.stream
                   (csvIterable.spliterator(), false)
-                  .map(RunsCsvBinder.class::cast)
-                  .forEach(ipl -> runsMap.put(ipl.player, new PlayerDAO(ipl)));
+                  .map(BatsManCsvBinder.class::cast)
+                  .forEach(batsMan -> runsMap.put(batsMan.player, new PlayerDao(batsMan)));
          }
          else if (binderClass.getName().equals("iplAnalyzer.BowlerCsvBinder"))
          {
             StreamSupport.stream
                   (csvIterable.spliterator(), false)
                   .map(BowlerCsvBinder.class::cast)
-                  .forEach(ipl -> runsMap.put(ipl.player, new PlayerDAO(ipl)));
+                  .forEach(bowler -> runsMap.put(bowler.player, new PlayerDao(bowler)));
          }
       }
       catch (IOException e)

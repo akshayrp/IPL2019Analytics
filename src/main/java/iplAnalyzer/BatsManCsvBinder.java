@@ -2,9 +2,9 @@ package iplAnalyzer;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class RunsCsvBinder
+public class BatsManCsvBinder
 {
-   public RunsCsvBinder()
+   public BatsManCsvBinder()
    {
    }
 

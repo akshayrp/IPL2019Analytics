@@ -9,12 +9,21 @@ public class BowlerCsvBinder
    {
    }
 
-   @CsvBindByName(column = "Player", required = true)
+   @CsvBindByName(column = "PLAYER", required = true)
    public String player;
 
    @CsvBindByName(column = "Avg", required = true)
-   public Double avg;
+   public double avg;
 
    @CsvBindByName(column = "SR", required = true)
-   public Double strikeRate;
+   public double strikeRate;
+
+   @CsvBindByName(column = "Econ", required = true)
+   public double economy;
+
+   @CsvBindByName(column = "5w", required = true)
+   public int fives;
+
+   @CsvBindByName(column = "4w", required = true)
+   public int fours;
 }
