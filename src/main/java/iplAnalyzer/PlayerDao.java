@@ -12,6 +12,7 @@ public class PlayerDao
    public int fours;
    public int sixs;
    public int fives;
+   public int wickets;
 
    public PlayerDao(BatsManCsvBinder csvData)
    {
@@ -32,5 +33,6 @@ public class PlayerDao
       this.economy = csvData.economy;
       this.fives = csvData.fives;
       this.fours = csvData.fours;
+      this.wickets = csvData.wickets;
    }
 }

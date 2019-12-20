@@ -2,7 +2,7 @@ package iplAnalyzer;
 
 import java.util.Comparator;
 
-public class ComparatorForTwoFields implements Comparator<PlayerDao>
+public class ComparatorFor4sAnd6sRuns implements Comparator<PlayerDao>
 {
    @Override
    public int compare(PlayerDao o1, PlayerDao o2)

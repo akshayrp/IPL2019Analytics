@@ -20,10 +20,16 @@ public class IPLAnalyzer
    public IPLAnalyzer()
    {
       this.enumMap = new HashMap<>();
+      sort();
+
+   }
+
+   public void sort()
+   {
       this.enumMap.put(sortingBasedOn.BATTING_AVERAGE, Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder()));
       this.enumMap.put(sortingBasedOn.BATTING_STRIKE_RATE, Comparator.comparing(ipl -> ipl.strikeRate, Comparator.reverseOrder()));
-      this.enumMap.put(sortingBasedOn.SORT_ON_4s_AND_6s, new ComparatorForTwoFields().reversed());
-      this.enumMap.put(sortingBasedOn.BEST_STRIKE_RATE_WITH_6s_4s, new ComparatorForTwoFields().reversed().thenComparing(compare -> compare.strikeRate));
+      this.enumMap.put(sortingBasedOn.SORT_ON_4s_AND_6s, new ComparatorFor4sAnd6sRuns().reversed());
+      this.enumMap.put(sortingBasedOn.BEST_STRIKE_RATE_WITH_6s_4s, new ComparatorFor4sAnd6sRuns().reversed().thenComparing(compare -> compare.strikeRate));
       Comparator<PlayerDao> comparingAverageForStrikeRate = Comparator.comparing(ipl -> ipl.avg, Comparator.reverseOrder());
       this.enumMap.put(sortingBasedOn.STRIKE_RATE_AND_AVERAGE, comparingAverageForStrikeRate.thenComparing(compare -> compare.strikeRate, Comparator.reverseOrder()));
       Comparator<PlayerDao> comparingRunsForAverage = Comparator.comparing(ipl -> ipl.run, Comparator.reverseOrder());
@@ -31,6 +37,10 @@ public class IPLAnalyzer
       this.enumMap.put(sortingBasedOn.BOWLING_AVERAGE, Comparator.comparing(ipl -> ipl.avg));
       this.enumMap.put(sortingBasedOn.BOWLING_STRIKE_RATE, Comparator.comparing(ipl -> ipl.strikeRate));
       this.enumMap.put(sortingBasedOn.BOWLING_ECONOMY, Comparator.comparing(ipl -> ipl.economy));
+      Comparator<PlayerDao> comparingStrikeRateForWickets = new ComparatorFor4And5Wickets().reversed();
+      this.enumMap.put(sortingBasedOn.SORT_ON_4w_AND_5w, comparingStrikeRateForWickets.thenComparing(Comparator.comparing(ipl -> ipl.strikeRate)));
+      Comparator<PlayerDao> comparingBowlerAverageForStrikeRate = Comparator.comparing(ipl -> ipl.avg);
+      this.enumMap.put(sortingBasedOn.STRIKE_RATE_AND_AVERAGE, comparingBowlerAverageForStrikeRate.thenComparing(Comparator.comparing(ipl -> ipl.strikeRate)));
 
    }
 

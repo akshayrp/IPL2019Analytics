@@ -26,4 +26,7 @@ public class BowlerCsvBinder
 
    @CsvBindByName(column = "4w", required = true)
    public int fours;
+
+   @CsvBindByName(column = "Wkts", required = true)
+   public int wickets;
 }
