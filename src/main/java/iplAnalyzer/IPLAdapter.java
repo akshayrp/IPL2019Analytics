@@ -23,6 +23,7 @@ public abstract class IPLAdapter
 
    public IPLAdapter()
    {}
+
    public abstract Map<String, PlayerDao> loadData(String...iplFilePath) throws IPLException;
 
    public <E> Map<String, PlayerDao> loadData(Class<E> binderClass, String iplFilePath) throws IPLException

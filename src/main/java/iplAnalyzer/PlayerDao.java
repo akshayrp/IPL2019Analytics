@@ -22,6 +22,20 @@ public class PlayerDao
    {
    }
 
+   public PlayerDao(String player, int run, double battingAvg)
+   {
+      this.player = player;
+      this.run = run;
+      this.battingAvg = battingAvg;
+   }
+
+   public PlayerDao(String player, double bowlingAvg, int wickets)
+   {
+      this.player = player;
+      this.bowlingAvg = bowlingAvg;
+      this.wickets = wickets;
+   }
+
    public PlayerDao(BatsManCsvBinder csvData)
    {
       this.player = csvData.player;

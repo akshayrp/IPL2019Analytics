@@ -7,6 +7,15 @@ import java.util.stream.Collectors;
 
 public class IPLAnalyzer
 {
+   private IPLAdapter mockedAdapter;
+   SortedDataContainer mockedContainer;
+
+   public void setMockObj(IPLAdapter mockAdapter, SortedDataContainer container)
+   {
+      this.mockedAdapter = mockAdapter;
+      this.mockedContainer = container;
+   }
+
    public enum PlayerEnum
    {
       BATSMAN, ALL_ROUNDER, BOWLER
@@ -24,8 +33,8 @@ public class IPLAnalyzer
    public Map<String, PlayerDao> getSortedData(PlayerEnum playerEnum, String... iplFilePath) throws IPLException
    {
       this.player = playerEnum;
-      IPLAdapter player = PlayerObjectFactory.getPlayer(playerEnum);
-      Map<String, PlayerDao> map = player.loadData(iplFilePath);
+      //IPLAdapter player = PlayerObjectFactory.getPlayer(playerEnum);
+      Map<String, PlayerDao> map = mockedAdapter.loadData(iplFilePath);
       return map;
    }
 
@@ -34,7 +43,7 @@ public class IPLAnalyzer
    {
       ArrayList list = dataMap.values()
             .stream()
-            .sorted(SortedDataContainer.enumMap.get(field))
+            .sorted(mockedContainer.getData(field))
             .collect(Collectors.toCollection(ArrayList::new));
       String sortedData = new Gson().toJson(list);
       return sortedData;

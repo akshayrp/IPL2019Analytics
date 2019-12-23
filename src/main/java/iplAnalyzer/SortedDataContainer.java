@@ -16,6 +16,12 @@ public class SortedDataContainer
    {
       this.enumMap = new HashMap<>();
    }
+
+   public Comparator<PlayerDao> getData(SortingEnums field)
+   {
+      return enumMap.get(field);
+   }
+
    public void sort()
    {
       enumMap.put(SortingEnums.BATTING_AVERAGE,

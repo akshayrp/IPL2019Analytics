@@ -2,6 +2,7 @@ package iplAnalyzer;
 
 import com.google.gson.Gson;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
@@ -32,6 +33,13 @@ public class IPLAnalyzerTest
    public static final String PREPARED_RUNS_FILE_PATH
          = "./src/test/resources/preparedRunsFile.csv";
 
+
+   @BeforeClass
+   public static void beforeClass() throws Exception
+   {
+      IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+
+   }
 
    @Test
    public void givenFilePath_WhenFileCorrect_CanReadFile()
