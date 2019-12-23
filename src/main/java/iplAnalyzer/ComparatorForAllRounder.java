@@ -7,6 +7,6 @@ public class ComparatorForAllRounder implements Comparator<PlayerDao>
    @Override
    public int compare(PlayerDao o1, PlayerDao o2)
    {
-      return (int) ((o1.battingAvg - (1/o1.bowlingAvg)) - (o2.battingAvg - (1/o2.bowlingAvg)));
+      return (o1.run*o1.wickets)-(o2.run*o2.wickets);
    }
 }

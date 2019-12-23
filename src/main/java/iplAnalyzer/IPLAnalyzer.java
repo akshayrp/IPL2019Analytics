@@ -42,8 +42,8 @@ public class IPLAnalyzer
       this.enumMap.put(sortingBasedOn.BOWLING_STRIKE_RATE_AND_AVERAGE, comparingBowlerAverageForStrikeRate.thenComparing(ipl -> ipl.bowlingAvg));
       Comparator<PlayerDao> comparingBowlerMaxWicketsForAverage = new ComparatorFor4And5Wickets();
       this.enumMap.put(sortingBasedOn.WICKETS_AND_AVERAGE, comparingBowlerMaxWicketsForAverage.thenComparing(ipl -> ipl.bowlingAvg));
+      this.enumMap.put(sortingBasedOn.ALL_ROUNDER_IN_AVERAGE,new ComparatorForAllRounderInAverage().reversed());
       this.enumMap.put(sortingBasedOn.ALL_ROUNDER,new ComparatorForAllRounder().reversed());
-
 
    }
 

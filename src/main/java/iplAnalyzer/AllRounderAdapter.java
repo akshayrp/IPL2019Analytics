@@ -3,7 +3,6 @@ package iplAnalyzer;
 import CSVBuilder.CSVBuilderException;
 import CSVBuilder.CSVBuilderFactory;
 import CSVBuilder.ICSVBuilder;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -31,7 +30,7 @@ public class AllRounderAdapter extends IPLAdapter
       return map1;
    }
 
-   private Map<String, PlayerDao> loadBowlerData(String iplFilePath) throws IPLException
+   private void loadBowlerData(String iplFilePath) throws IPLException
    {
       prepareFile(iplFilePath, PREPARED_FILE_PATH);
       try (Reader reader = Files.newBufferedReader(Paths.get(PREPARED_FILE_PATH)))
@@ -42,8 +41,10 @@ public class AllRounderAdapter extends IPLAdapter
          StreamSupport.stream
                (csvIterable.spliterator(), false)
                .map(BowlerCsvBinder.class::cast).filter(csvPlayer -> map1.get(csvPlayer.player) != null)
-               .forEach(bowler -> map1.get(bowler.player).bowlingAvg = bowler.avg);
-         return map1;
+               .forEach(mergedData -> {
+                  map1.get(mergedData.player).bowlingAvg = mergedData.avg;
+                        map1.get(mergedData.player).wickets = mergedData.wickets;
+               });
       }
       catch (IOException e)
       {
@@ -53,6 +54,5 @@ public class AllRounderAdapter extends IPLAdapter
       {
          e.printStackTrace();
       }
-      return null;
    }
 }
