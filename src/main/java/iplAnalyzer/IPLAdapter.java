@@ -21,11 +21,8 @@ public abstract class IPLAdapter
    public static final String PREPARED_FILE_PATH
          = "/home/admin1/IdeaProjects/IPL2019Analytics/src/test/resources/preparedRunsFile.csv";
 
-
-
    public IPLAdapter()
    {}
-
    public abstract Map<String, PlayerDao> loadData(String...iplFilePath) throws IPLException;
 
    public <E> Map<String, PlayerDao> loadData(Class<E> binderClass, String iplFilePath) throws IPLException
