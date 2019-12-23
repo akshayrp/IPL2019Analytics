@@ -5,34 +5,42 @@ public class PlayerDao
 
    public String player;
    public int run;
-   public double avg;
+   public double battingAvg;
+   public double bowlingAvg;
    public String notOut;
-   public double strikeRate;
+   public double battingStrikeRate;
+   public double bowlingStrikeRate;
    public double economy;
-   public int fours;
-   public int sixs;
-   public int fives;
+   public int fourRuns;
+   public int fourWickets;
+   public int sixRuns;
+   public int fivesWickets;
    public int wickets;
+
+
+   public PlayerDao()
+   {
+   }
 
    public PlayerDao(BatsManCsvBinder csvData)
    {
       this.player = csvData.player;
       this.run = csvData.run;
-      this.avg = csvData.avg;
+      this.battingAvg = csvData.avg;
       this.notOut = csvData.notOut;
-      this.strikeRate = csvData.strikeRate;
-      this.fours = csvData.Fours;
-      this.sixs = csvData.Sixs;
+      this.battingStrikeRate = csvData.strikeRate;
+      this.fourRuns = csvData.Fours;
+      this.sixRuns = csvData.Sixs;
    }
 
    public PlayerDao(BowlerCsvBinder csvData)
    {
       this.player = csvData.player;
-      this.avg = csvData.avg;
-      this.strikeRate = csvData.strikeRate;
+      this.bowlingAvg = csvData.avg;
+      this.bowlingStrikeRate = csvData.strikeRate;
       this.economy = csvData.economy;
-      this.fives = csvData.fives;
-      this.fours = csvData.fours;
+      this.fivesWickets = csvData.fives;
+      this.fourWickets = csvData.fours;
       this.wickets = csvData.wickets;
    }
 }

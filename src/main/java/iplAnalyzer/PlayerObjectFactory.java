@@ -8,6 +8,8 @@ public class PlayerObjectFactory
          return new BatsMan();
       else if(player.equals(IPLAnalyzer.PlayerEnum.BOWLER))
          return new Bowler();
+      else if(player.equals(IPLAnalyzer.PlayerEnum.ALL_ROUNDER))
+         return new AllRounderAdapter();
       return null;
    }
 }

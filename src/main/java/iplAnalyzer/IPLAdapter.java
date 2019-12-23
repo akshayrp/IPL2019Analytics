@@ -19,19 +19,18 @@ public abstract class IPLAdapter
 {
 
    public static final String PREPARED_FILE_PATH
-         = "./src/test/resources/preparedRunsFile.csv";
+         = "/home/admin1/IdeaProjects/IPL2019Analytics/src/test/resources/preparedRunsFile.csv";
 
-   Map<String, PlayerDao> runsMap;
+
 
    public IPLAdapter()
-   {
-      this.runsMap = new HashMap<>();
-   }
+   {}
 
-   public abstract Map<String, PlayerDao> loadData(String iplFilePath) throws IPLException;
+   public abstract Map<String, PlayerDao> loadData(String...iplFilePath) throws IPLException;
 
    public <E> Map<String, PlayerDao> loadData(Class<E> binderClass, String iplFilePath) throws IPLException
    {
+      Map<String, PlayerDao> runsMap = new HashMap<>();
       prepareFile(iplFilePath, PREPARED_FILE_PATH);
       try (Reader reader = Files.newBufferedReader(Paths.get(PREPARED_FILE_PATH)))
       {

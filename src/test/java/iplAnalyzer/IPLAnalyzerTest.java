@@ -1,5 +1,6 @@
 package iplAnalyzer;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -164,6 +165,22 @@ public class IPLAnalyzerTest
       catch (IPLException e)
       {
          Assert.assertEquals(IPLException.ExceptionType.CANNOT_READ_FILE, e.type);
+      }
+   }
+
+   @Test
+   public void givenBatsManAndBowlerData_WhenCorrect_CompareAverageAndGivesAllRounderPlayer()
+   {
+      try
+      {
+         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.ALL_ROUNDER,"/home/admin1/IdeaProjects/IPL2019Analytics/src/test/resources/IPL2019FactsheetMostRuns.csv",WKTS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.ALL_ROUNDER, dataMap);
+         PlayerDao[] DataInArray = new Gson().fromJson(dataString, PlayerDao[].class);
+         Assert.assertEquals("Andre Russell", DataInArray[0].player);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
       }
    }
 }

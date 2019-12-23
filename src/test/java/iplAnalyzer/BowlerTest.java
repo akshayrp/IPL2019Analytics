@@ -52,7 +52,7 @@ public class BowlerTest
    {
       try
       {
-         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, SAMPLE_WKTS_FILE_PATH);
+         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
          String dataString = iplAnalyzer.sortData(SortingEnums.SORT_ON_4w_AND_5w, dataMap);
          BatsManCsvBinder[] DataInArray = new Gson().fromJson(dataString, BatsManCsvBinder[].class);
          Assert.assertEquals("Kagiso Rabada", DataInArray[0].player);
@@ -67,10 +67,26 @@ public class BowlerTest
    {
       try
       {
-         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, SAMPLE_WKTS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(SortingEnums.STRIKE_RATE_AND_AVERAGE, dataMap);
+         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.BOWLING_STRIKE_RATE_AND_AVERAGE, dataMap);
          BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
-         Assert.assertEquals("Kagiso Rabada", DataInArray[0].player);
+         Assert.assertEquals("Suresh Raina", DataInArray[0].player);
+      }
+      catch (IPLException e)
+      {
+         e.printStackTrace();
+      }
+   }
+
+   @Test
+   public void givenBowlerFilePath_WhenCorrect_SortDataOnMaxWicketAndAverageAndGivesSortedData()
+   {
+      try
+      {
+         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
+         String dataString = iplAnalyzer.sortData(SortingEnums.WICKETS_AND_AVERAGE, dataMap);
+         BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
+         Assert.assertEquals("Suresh Raina", DataInArray[0].player);
       }
       catch (IPLException e)
       {

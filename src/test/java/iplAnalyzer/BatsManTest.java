@@ -36,7 +36,7 @@ public class BatsManTest
          Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
          String dataString = iplAnalyzer.sortData(SortingEnums.BATTING_STRIKE_RATE, dataMap);
          BatsManCsvBinder[] DataInArray = new Gson().fromJson(dataString, BatsManCsvBinder[].class);
-         Assert.assertEquals("Ishant Sharma", DataInArray[0].player);
+         Assert.assertEquals("Andre Russell", DataInArray[0].player);
       }
       catch (IPLException e)
       {
@@ -83,7 +83,7 @@ public class BatsManTest
       try
       {
          Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(SortingEnums.STRIKE_RATE_AND_AVERAGE, dataMap);
+         String dataString = iplAnalyzer.sortData(SortingEnums.BATTING_STRIKE_RATE_AND_AVERAGE, dataMap);
          BatsManCsvBinder[] DataInArray = new Gson().fromJson(dataString, BatsManCsvBinder[].class);
          Assert.assertEquals("MS Dhoni", DataInArray[0].player);
       }
