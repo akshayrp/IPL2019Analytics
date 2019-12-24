@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b23d0cd3-36bc-49ac-ab1b-35046c6cfdc2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/iplAnalyzer/ComparatorFor4And5Wickets.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/iplAnalyzer/AdapterMockitoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/iplAnalyzer/BowlerCsvBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/iplAnalyzer/BowlerCsvBinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/iplAnalyzer/ComparatorForTwoFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/iplAnalyzer/ComparatorFor4sAnd6sRuns.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/iplAnalyzer/BatsManCsvBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/iplAnalyzer/BatsManCsvBinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/iplAnalyzer/IPLAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/iplAnalyzer/IPLAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/iplAnalyzer/PlayerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/iplAnalyzer/PlayerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/iplAnalyzer/SortingEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/iplAnalyzer/SortingEnums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/iplAnalyzer/AnalyzerMockitoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/iplAnalyzer/AnalyzerMockitoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/iplAnalyzer/BatsManTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/iplAnalyzer/BatsManTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/iplAnalyzer/BowlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/iplAnalyzer/BowlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/iplAnalyzer/IPLAnalyzerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/iplAnalyzer/IPLAnalyzerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/preparedRunsFile.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/preparedRunsFile.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +57,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/iplAnalyzer" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -69,13 +72,13 @@
       <recent name="IPLAnalyzer" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.BowlerTest.givenBowlerFilePath_WhenCorrect_SortDataOnWicketsAndGivesSortedData">
-    <configuration name="BowlerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.AdapterMockitoTest.givenFilePathAndBinderClass_ShouldParseCsvDataAndReturnsMap">
+    <configuration name="AdapterMockitoTest.givenCsvFilePathAndBinderClassOfBatsMan_WhenCorrect_ShouldReadDataAndReturnMap" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.BowlerTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.AdapterMockitoTest.givenCsvFilePathAndBinderClassOfBatsMan_WhenCorrect_ShouldReadDataAndReturnMap&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -90,12 +93,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="BowlerTest.givenBowlerFilePath_WhenCorrect_SortDataOnAverageAndStrikeRateAndGivesSortedData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AdapterMockitoTest.givenFilePathAndBinderClass_ShouldParseCsvDataAndReturnsMap" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.BowlerTest.givenBowlerFilePath_WhenCorrect_SortDataOnAverageAndStrikeRateAndGivesSortedData&quot;" />
+        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.AdapterMockitoTest.givenFilePathAndBinderClass_ShouldParseCsvDataAndReturnsMap&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -110,12 +113,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="BowlerTest.givenBowlerFilePath_WhenCorrect_SortDataOnWicketsAndGivesSortedData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AnalyzerMockitoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.BowlerTest.givenBowlerFilePath_WhenCorrect_SortDataOnWicketsAndGivesSortedData&quot;" />
+        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.AnalyzerMockitoTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -130,12 +133,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="BowlerTest.givenPreparedFilePath_WhenCorrect_SortDataBasedOnEconomyRate" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AnalyzerMockitoTest.givenBowlingData_WhenCorrect_ReturnsSortedData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.BowlerTest.givenPreparedFilePath_WhenCorrect_SortDataBasedOnEconomyRate&quot;" />
+        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.AnalyzerMockitoTest.givenBowlingData_WhenCorrect_ReturnsSortedData&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -150,12 +153,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="BowlerTest.givenRunsCsvData_WhenCorrect_CompareDataBasedOnMax4sAnd6sAndGivesSortedData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AnalyzerMockitoTest.givenData_WhenCorrect_ReturnsSortedData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.BowlerTest.givenRunsCsvData_WhenCorrect_CompareDataBasedOnMax4sAnd6sAndGivesSortedData&quot;" />
+        <option name="scriptParameters" value="--tests &quot;iplAnalyzer.AnalyzerMockitoTest.givenData_WhenCorrect_ReturnsSortedData&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -172,11 +175,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.BowlerTest.givenBowlerFilePath_WhenCorrect_SortDataOnWicketsAndGivesSortedData" />
-        <item itemvalue="Gradle.BowlerTest.givenBowlerFilePath_WhenCorrect_SortDataOnAverageAndStrikeRateAndGivesSortedData" />
-        <item itemvalue="Gradle.BowlerTest" />
-        <item itemvalue="Gradle.BowlerTest.givenRunsCsvData_WhenCorrect_CompareDataBasedOnMax4sAnd6sAndGivesSortedData" />
-        <item itemvalue="Gradle.BowlerTest.givenPreparedFilePath_WhenCorrect_SortDataBasedOnEconomyRate" />
+        <item itemvalue="Gradle.AdapterMockitoTest.givenFilePathAndBinderClass_ShouldParseCsvDataAndReturnsMap" />
+        <item itemvalue="Gradle.AnalyzerMockitoTest" />
+        <item itemvalue="Gradle.AnalyzerMockitoTest.givenBowlingData_WhenCorrect_ReturnsSortedData" />
+        <item itemvalue="Gradle.AnalyzerMockitoTest.givenData_WhenCorrect_ReturnsSortedData" />
+        <item itemvalue="Gradle.AdapterMockitoTest.givenCsvFilePathAndBinderClassOfBatsMan_WhenCorrect_ShouldReadDataAndReturnMap" />
       </list>
     </recent_temporary>
   </component>
@@ -214,54 +217,62 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="346" y="201" width="731" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1299.741@67.27.1299.741" timestamp="1576328612488" />
-    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1576840224150">
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1577099300033">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1576840224150" />
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1577099300033" />
+    <state x="423" y="68" width="576" height="657" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1577086989447">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="423" y="68" width="576" height="657" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/67.27.1299.741@67.27.1299.741" timestamp="1577086989447" />
     <state x="108" y="27" width="1196" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1576479812308">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="108" y="27" width="1196" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1576479812308" />
+    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577076466841">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1577076466841" />
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1576323401677">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1576323401677" />
-    <state x="499" y="113" width="424" height="567" key="FileChooserDialogImpl" timestamp="1576310415504">
+    <state x="499" y="113" width="424" height="567" key="FileChooserDialogImpl" timestamp="1577168718876">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="499" y="113" width="424" height="567" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1576310415504" />
-    <state width="1253" height="262" key="GridCell.Tab.0.bottom" timestamp="1576846791557">
+    <state x="499" y="113" width="424" height="567" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1577168718876" />
+    <state width="1253" height="485" key="GridCell.Tab.0.bottom" timestamp="1577180797700">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="262" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1576846791557" />
-    <state width="1253" height="262" key="GridCell.Tab.0.center" timestamp="1576846791557">
+    <state width="1253" height="485" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1577180797700" />
+    <state width="1253" height="485" key="GridCell.Tab.0.center" timestamp="1577180797700">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="262" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1576846791557" />
-    <state width="1253" height="262" key="GridCell.Tab.0.left" timestamp="1576846791556">
+    <state width="1253" height="485" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1577180797700" />
+    <state width="1253" height="485" key="GridCell.Tab.0.left" timestamp="1577180797700">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="262" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1576846791556" />
-    <state width="1253" height="262" key="GridCell.Tab.0.right" timestamp="1576846791557">
+    <state width="1253" height="485" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1577180797700" />
+    <state width="1253" height="485" key="GridCell.Tab.0.right" timestamp="1577180797700">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="262" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1576846791557" />
-    <state width="1253" height="191" key="GridCell.Tab.1.bottom" timestamp="1576829074747">
+    <state width="1253" height="485" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1577180797700" />
+    <state width="1253" height="283" key="GridCell.Tab.1.bottom" timestamp="1577173175291">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="191" key="GridCell.Tab.1.bottom/67.27.1299.741@67.27.1299.741" timestamp="1576829074747" />
-    <state width="1253" height="191" key="GridCell.Tab.1.center" timestamp="1576829074747">
+    <state width="1253" height="283" key="GridCell.Tab.1.bottom/67.27.1299.741@67.27.1299.741" timestamp="1577173175291" />
+    <state width="1253" height="283" key="GridCell.Tab.1.center" timestamp="1577173175290">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="191" key="GridCell.Tab.1.center/67.27.1299.741@67.27.1299.741" timestamp="1576829074747" />
-    <state width="1253" height="191" key="GridCell.Tab.1.left" timestamp="1576829074747">
+    <state width="1253" height="283" key="GridCell.Tab.1.center/67.27.1299.741@67.27.1299.741" timestamp="1577173175290" />
+    <state width="1253" height="283" key="GridCell.Tab.1.left" timestamp="1577173175290">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="191" key="GridCell.Tab.1.left/67.27.1299.741@67.27.1299.741" timestamp="1576829074747" />
-    <state width="1253" height="191" key="GridCell.Tab.1.right" timestamp="1576829074747">
+    <state width="1253" height="283" key="GridCell.Tab.1.left/67.27.1299.741@67.27.1299.741" timestamp="1577173175290" />
+    <state width="1253" height="283" key="GridCell.Tab.1.right" timestamp="1577173175290">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="191" key="GridCell.Tab.1.right/67.27.1299.741@67.27.1299.741" timestamp="1576829074747" />
+    <state width="1253" height="283" key="GridCell.Tab.1.right/67.27.1299.741@67.27.1299.741" timestamp="1577173175290" />
     <state x="299" y="142" width="824" height="508" key="IDE.errors.dialog" timestamp="1576316845604">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -270,6 +281,18 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="413" y="121" width="597" height="550" key="RollbackChangesDialog/67.27.1299.741@67.27.1299.741" timestamp="1576321775303" />
+    <state x="205" y="31" key="SettingsEditor" timestamp="1576929758871">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1576929758871" />
+    <state width="511" height="446" key="SwitcherDM" timestamp="1576925542394">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="511" height="446" key="SwitcherDM/67.27.1299.741@67.27.1299.741" timestamp="1576925542394" />
+    <state width="649" height="371" key="XDebugger.FullValuePopup" timestamp="1577087312414">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="649" height="371" key="XDebugger.FullValuePopup/67.27.1299.741@67.27.1299.741" timestamp="1577087312414" />
     <state x="488" y="176" width="446" height="440" key="chooseDestDirectoryDialog" timestamp="1576324375186">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -278,12 +301,24 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="67" y="27" width="1289" height="741" key="new project wizard/67.27.1299.741@67.27.1299.741" timestamp="1576492370178" />
-    <state x="136" y="27" width="598" height="741" key="refactoring.ChangeSignatureDialog" timestamp="1576480250746">
+    <state x="136" y="27" width="598" height="741" key="refactoring.ChangeSignatureDialog" timestamp="1577103820844">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="136" y="27" width="598" height="741" key="refactoring.ChangeSignatureDialog/67.27.1299.741@67.27.1299.741" timestamp="1576480250746" />
+    <state x="136" y="27" width="598" height="741" key="refactoring.ChangeSignatureDialog/67.27.1299.741@67.27.1299.741" timestamp="1577103820844" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/iplAnalyzer/BowlerTest.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/IPL2019Analytics$AnalyzerMockitoTest.ic" NAME="AnalyzerMockitoTest Coverage Results" MODIFIED="1577167624194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/IPL2019Analytics$IPLAnalyzerTest_givenFilePath_whenCorrect_SortDataBasedOnBattingAverage.ic" NAME="IPLAnalyzerTest.givenFilePath_whenCorrect_SortDataBasedOnBattingAverage Coverage Results" MODIFIED="1576328967134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/IPL2019Analytics$IPLAnalyzerTest_givenFilePath_WhenDelimiterNotFound_HandlesException.ic" NAME="IPLAnalyzerTest.givenFilePath_WhenDelimiterNotFound_HandlesException Coverage Results" MODIFIED="1576315445102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/IPL2019Analytics$BatsManTest.ic" NAME="BatsManTest Coverage Results" MODIFIED="1576829080710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

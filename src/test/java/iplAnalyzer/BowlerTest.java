@@ -16,81 +16,48 @@ public class BowlerTest
    IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
 
    @Test
-   public void givenBowlerFilePath_whenCorrect_SortDataBasedOnBowlingAverage()
+   public void givenBowlerFilePath_whenCorrect_SortDataBasedOnBowlingAverage() throws IPLException
    {
-      try
-      {
-         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(SortingEnums.BOWLING_AVERAGE, dataMap);
-         BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
-         Assert.assertEquals("Suresh Raina", DataInArray[0].player);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
+      Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
+      String dataString = iplAnalyzer.sortData(SortingEnums.BOWLING_AVERAGE, dataMap);
+      BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
+      Assert.assertEquals("Suresh Raina", DataInArray[0].player);
    }
 
    @Test
-   public void giveBowlerFilePath_WhenCorrect_SortDataBasedOnEconomyRate()
+   public void giveBowlerFilePath_WhenCorrect_SortDataBasedOnEconomyRate() throws IPLException
    {
-      try
-      {
-         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(SortingEnums.BOWLING_ECONOMY, dataMap);
-         BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
-         Assert.assertEquals("Shivam Dube", DataInArray[0].player);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
+      Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
+      String dataString = iplAnalyzer.sortData(SortingEnums.BOWLING_ECONOMY, dataMap);
+      BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
+      Assert.assertEquals("Shivam Dube", DataInArray[0].player);
    }
 
    @Test
-   public void givenBowlerFilePath_WhenCorrect_SortDataOnWicketsAndGivesSortedData()
+   public void givenBowlerFilePath_WhenCorrect_SortDataOnWicketsAndGivesSortedData() throws IPLException
    {
-      try
-      {
-         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(SortingEnums.SORT_ON_4w_AND_5w, dataMap);
-         BatsManCsvBinder[] DataInArray = new Gson().fromJson(dataString, BatsManCsvBinder[].class);
-         Assert.assertEquals("Kagiso Rabada", DataInArray[0].player);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
+      Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
+      String dataString = iplAnalyzer.sortData(SortingEnums.SORT_ON_4w_AND_5w, dataMap);
+      BatsManCsvBinder[] DataInArray = new Gson().fromJson(dataString, BatsManCsvBinder[].class);
+      Assert.assertEquals("Kagiso Rabada", DataInArray[0].player);
    }
+
    @Test
-   public void givenBowlerFilePath_WhenCorrect_SortDataOnAverageAndStrikeRateAndGivesSortedData()
+   public void givenBowlerFilePath_WhenCorrect_SortDataOnAverageAndStrikeRateAndGivesSortedData() throws IPLException
    {
-      try
-      {
          Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
          String dataString = iplAnalyzer.sortData(SortingEnums.BOWLING_STRIKE_RATE_AND_AVERAGE, dataMap);
          BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
          Assert.assertEquals("Suresh Raina", DataInArray[0].player);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
    }
 
+
    @Test
-   public void givenBowlerFilePath_WhenCorrect_SortDataOnMaxWicketAndAverageAndGivesSortedData()
+   public void givenBowlerFilePath_WhenCorrect_SortDataOnMaxWicketAndAverageAndGivesSortedData() throws IPLException
    {
-      try
-      {
-         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(SortingEnums.WICKETS_AND_AVERAGE, dataMap);
-         BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
-         Assert.assertEquals("Suresh Raina", DataInArray[0].player);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
+      Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BOWLER, WKTS_FILE_PATH);
+      String dataString = iplAnalyzer.sortData(SortingEnums.WICKETS_AND_AVERAGE, dataMap);
+      BowlerCsvBinder[] DataInArray = new Gson().fromJson(dataString, BowlerCsvBinder[].class);
+      Assert.assertEquals("Suresh Raina", DataInArray[0].player);
    }
 }

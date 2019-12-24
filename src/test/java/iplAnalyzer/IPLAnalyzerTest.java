@@ -57,154 +57,84 @@ public class IPLAnalyzerTest
    }
 
    @Test
-   public void givenFilePath_WhenDoesNotExist_ShouldThrowException()
+   public void givenFilePath_WhenDoesNotExist_ShouldThrowException() throws IPLException
    {
-      try
-      {
-         ExpectedException exception = ExpectedException.none();
-         exception.expect(IPLException.class);
-         iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NON_EXISTING_FILE_PATH);
-      }
-      catch (IPLException e)
-      {
-         Assert.assertEquals(IPLException.ExceptionType.CANNOT_READ_FILE, e.type);
-      }
+      ExpectedException exception = ExpectedException.none();
+      exception.expect(IPLException.class);
+      iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NON_EXISTING_FILE_PATH);
    }
 
    @Test
-   public void givenFilepath_WhenCorrect_returnsNumberOfRecord()
+   public void givenFilepath_WhenCorrect_returnsNumberOfRecord() throws IPLException
    {
       Map<String, PlayerDao> dataMap = null;
-      try
-      {
-         dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
+      dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
       Assert.assertEquals(100, dataMap.size());
    }
 
    @Test
-   public void givenFilePath_WhenDelimiterNotFound_HandlesException()
+   public void givenFilePath_WhenDelimiterNotFound_HandlesException() throws IPLException
    {
-      try
-      {
-         ExpectedException exception = ExpectedException.none();
-         exception.expect(IPLException.class);
-         iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NO_DELIMITER_FILE_PATH);
-      }
-      catch (IPLException e)
-      {
-         Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
-      }
+      ExpectedException exception = ExpectedException.none();
+      exception.expect(IPLException.class);
+      iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NO_DELIMITER_FILE_PATH);
    }
 
    @Test
-   public void givenFilePath_WhenHeaderNotFound_HandlesException()
+   public void givenFilePath_WhenHeaderNotFound_HandlesException() throws IPLException
    {
-      try
-      {
-         ExpectedException exception = ExpectedException.none();
-         exception.expect(IPLException.class);
-         iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NO_HEADER_FILE_PATH);
-      }
-      catch (IPLException e)
-      {
-         Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
-      }
+      ExpectedException exception = ExpectedException.none();
+      exception.expect(IPLException.class);
+      iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NO_HEADER_FILE_PATH);
    }
 
    @Test
-   public void givenFilePath_WhenNoDataFound_HandlesException()
+   public void givenFilePath_WhenNoDataFound_HandlesException() throws IPLException
    {
-      try
-      {
-         ExpectedException exception = ExpectedException.none();
-         exception.expect(IPLException.class);
-         iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NO_DATA_FILE_PATH);
-      }
-      catch (IPLException e)
-      {
-         Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
-      }
+      ExpectedException exception = ExpectedException.none();
+      exception.expect(IPLException.class);
+      iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NO_DATA_FILE_PATH);
    }
 
    @Test
-   public void givenFilePath_WhenWrong_HandlesException()
+   public void givenFilePath_WhenWrong_HandlesException() throws IPLException
    {
-      try
-      {
-         ExpectedException exception = ExpectedException.none();
-         exception.expect(IPLException.class);
-         iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, WKTS_FILE_PATH);
-      }
-      catch (IPLException e)
-      {
-         Assert.assertEquals(IPLException.ExceptionType.UNABLE_TO_PARSE, e.type);
-      }
+      ExpectedException exception = ExpectedException.none();
+      exception.expect(IPLException.class);
+      iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, WKTS_FILE_PATH);
    }
 
    @Test
    public void givenOriginalFilePath_WhenCorrect_CreateNewFileWithProperData() throws IPLException
    {
       Map<String, PlayerDao> dataMap = null;
-      try
-      {
-         dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
+      dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, ORIGINAL_RUNS_FILE_PATH);
       Assert.assertEquals(100, dataMap.size());
    }
 
    @Test
-   public void givenOriginalFilePath_WhenInCorrect_ThrowException()
+   public void givenOriginalFilePath_WhenInCorrect_ThrowException() throws IPLException
    {
-      try
-      {
-         ExpectedException exception = ExpectedException.none();
-         exception.expect(IPLException.class);
-         iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NON_EXISTING_FILE_PATH);
-      }
-      catch (IPLException e)
-      {
-         Assert.assertEquals(IPLException.ExceptionType.CANNOT_READ_FILE, e.type);
-      }
+      ExpectedException exception = ExpectedException.none();
+      exception.expect(IPLException.class);
+      iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.BATSMAN, NON_EXISTING_FILE_PATH);
    }
 
    @Test
-   public void givenBatsManAndBowlerData_WhenCorrect_CompareAverageAndGivesAllRounderPlayer()
+   public void givenBatsManAndBowlerData_WhenCorrect_CompareAverageAndGivesAllRounderPlayer() throws IPLException
    {
-      try
-      {
-         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.ALL_ROUNDER,"/home/admin1/IdeaProjects/IPL2019Analytics/src/test/resources/IPL2019FactsheetMostRuns.csv",WKTS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(SortingEnums.ALL_ROUNDER_IN_AVERAGE, dataMap);
-         PlayerDao[] DataInArray = new Gson().fromJson(dataString, PlayerDao[].class);
-         Assert.assertEquals("Andre Russell", DataInArray[0].player);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
+      Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.ALL_ROUNDER,"/home/admin1/IdeaProjects/IPL2019Analytics/src/test/resources/IPL2019FactsheetMostRuns.csv",WKTS_FILE_PATH);
+      String dataString = iplAnalyzer.sortData(SortingEnums.ALL_ROUNDER_IN_AVERAGE, dataMap);
+      PlayerDao[] DataInArray = new Gson().fromJson(dataString, PlayerDao[].class);
+      Assert.assertEquals("Andre Russell", DataInArray[0].player);
    }
 
    @Test
-   public void givenBatsManAndBowlerData_WhenCorrect_CompareRunsAndWicketsAndGivesAllRounderPlayer()
+   public void givenBatsManAndBowlerData_WhenCorrect_CompareRunsAndWicketsAndGivesAllRounderPlayer() throws IPLException
    {
-      try
-      {
-         Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.ALL_ROUNDER,"/home/admin1/IdeaProjects/IPL2019Analytics/src/test/resources/IPL2019FactsheetMostRuns.csv",WKTS_FILE_PATH);
-         String dataString = iplAnalyzer.sortData(SortingEnums.ALL_ROUNDER, dataMap);
-         PlayerDao[] DataInArray = new Gson().fromJson(dataString, PlayerDao[].class);
-         Assert.assertEquals("Hardik Pandya", DataInArray[0].player);
-      }
-      catch (IPLException e)
-      {
-         e.printStackTrace();
-      }
+      Map<String, PlayerDao> dataMap = iplAnalyzer.getSortedData(IPLAnalyzer.PlayerEnum.ALL_ROUNDER,"/home/admin1/IdeaProjects/IPL2019Analytics/src/test/resources/IPL2019FactsheetMostRuns.csv",WKTS_FILE_PATH);
+      String dataString = iplAnalyzer.sortData(SortingEnums.ALL_ROUNDER, dataMap);
+      PlayerDao[] DataInArray = new Gson().fromJson(dataString, PlayerDao[].class);
+      Assert.assertEquals("Hardik Pandya", DataInArray[0].player);
    }
 }

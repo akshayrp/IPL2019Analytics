@@ -17,4 +17,5 @@ dependencies {
     compile "com.opencsv:opencsv:4.0"
     compile (files("/home/admin1/Desktop/CSVBuilder.main.jar"))
     compile 'com.google.code.gson:gson:2.2.+'
+    testImplementation 'org.mockito:mockito-core:3.+'
 }

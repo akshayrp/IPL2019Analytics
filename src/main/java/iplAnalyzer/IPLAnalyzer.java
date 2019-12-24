@@ -33,8 +33,16 @@ public class IPLAnalyzer
    public Map<String, PlayerDao> getSortedData(PlayerEnum playerEnum, String... iplFilePath) throws IPLException
    {
       this.player = playerEnum;
-      //IPLAdapter player = PlayerObjectFactory.getPlayer(playerEnum);
-      Map<String, PlayerDao> map = mockedAdapter.loadData(iplFilePath);
+     // mockedAdapter = PlayerObjectFactory.getPlayer(playerEnum);
+      Map<String, PlayerDao> map = null;
+      try
+      {
+         map = mockedAdapter.loadData(iplFilePath);
+      }
+      catch (IPLException e)
+      {
+         throw new IPLException("Cannot Load Data",IPLException.ExceptionType.CANNOT_READ_FILE);
+      }
       return map;
    }
 
